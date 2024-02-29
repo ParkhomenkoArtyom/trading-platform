@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "fe951ae0-df45-456e-b120-cd43ebf1b2d3",
+		"name": "trading-platform-collection-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7475860",
+		"_collection_link": "https://winter-satellite-984199.postman.co/workspace/4bfa274e-68ec-4fe5-8b64-90738c6e784a/collection/7475860-fe951ae0-df45-456e-b120-cd43ebf1b2d3?action=share&source=collection_link&creator=7475860"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"email\" : \"aaa@bbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUserByEmail",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/delete/emailAddress",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"delete",
+						"emailAddress"
+					]
+				},
+				"description": "emailAddress - пример переданного в запрос емейла пользователя"
+			},
+			"response": []
+		},
+		{
+			"name": "AssortmentList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/assortment/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"assortment",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GettingProductByExbarBody",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/assortment/get-product?exbarBody=167867868&quantity=0.05&isDiscountProvided=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"assortment",
+						"get-product"
+					],
+					"query": [
+						{
+							"key": "exbarBody",
+							"value": "167867868"
+						},
+						{
+							"key": "quantity",
+							"value": "0.05"
+						},
+						{
+							"key": "isDiscountProvided",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaleProducts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"cashPrice\" : 500,\r\n    \"cardPrice\" : 8.23,\r\n    \"productList\" :  \r\n    [{ \r\n        \"exbarBody\" : \"6213400000\",  \r\n        \"packName\" : \"Мороженное каштан\",\r\n        \"quantity\" : 1,\r\n        \"totalPrice\" : 2.1,\r\n        \"bonusPrice\" : 0.0,\r\n        \"unitName\" : \"шт\",\r\n        \"packType\" : 0\r\n      },\r\n      {\r\n        \"exbarBody\" : 23467,  \r\n        \"packName\"  : \"Bonaqua\",\r\n        \"quantity\"  : 2,\r\n        \"totalPrice\"  :  3.58, \r\n        \"bonusPrice\"  : 0.33, \r\n        \"unitName\" : \"бут\",\r\n        \"packType\" : 0\r\n      },\r\n      {\r\n        \"exbarBody\" : 33445,  \r\n        \"packName\"  : \"Колбаса\",\r\n        \"quantity\"  : 3.45,\r\n        \"totalPrice\"  :  3.58, \r\n        \"bonusPrice\"  : 0.33, \r\n        \"unitName\" : \"кг\",\r\n        \"packType\" : 1\r\n    \r\n      }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/sale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteSalesByDate",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sale/delete/2024-02-29 12:47:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sale",
+						"delete",
+						"2024-02-29 12:47:59"
+					]
+				},
+				"description": "Для теста DeleteSalesByDate нужно выполнить SailProduct, лезть в базу и смотреть дату покупки в точности до секунды, а затем в качестве примера передать эту дату в запрос удаления"
+			},
+			"response": []
+		}
+	]
+}
