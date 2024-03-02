@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n    \"email\" : \"aaa@bbb\"\r\n}",
+					"raw": "aaa@bbb",
 					"options": {
 						"raw": {
 							"language": "json"
