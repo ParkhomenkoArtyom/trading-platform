@@ -1,6 +1,8 @@
 package com.task.tradingPlatform.exception;
 
 import com.task.tradingPlatform.model.ExceptionResponse;
+import com.task.tradingPlatform.utils.JwtUtil;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,12 +33,24 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ExceptionResponse> catchInvalidDateFormatException( InvalidDateFormatException e) {
+    public ResponseEntity<ExceptionResponse> catchInvalidDateFormatException(InvalidDateFormatException e) {
         return new ResponseEntity<>(new ExceptionResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<ExceptionResponse> catchPackNotFoundException( PackNotFoundException e) {
+    public ResponseEntity<ExceptionResponse> catchPackNotFoundException(PackNotFoundException e) {
         return new ResponseEntity<>(new ExceptionResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionResponse> catchSalesNotFoundException(SalesNotFoundException e) {
+        return new ResponseEntity<>(new ExceptionResponse(HttpStatus.NOT_FOUND.value(), e.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<?> catchDeleteYourAccountException(DeleteYourAccountException e) {
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, JwtUtil.buildJwtCookie("", 0)
+                .toString()).body(e.getMessage());
+    }
+
 }

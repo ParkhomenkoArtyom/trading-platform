@@ -13,8 +13,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<String> deleteUser(@PathVariable("email") String email) {
-        if (userService.isUserExist(email))
-            userService.deleteUserByEmail(email);
+        userService.deleteUserByEmail(email);
         return ResponseEntity.ok().body("Пользователь c email: " + email + " успешно удален");
     }
 }
