@@ -1,5 +1,5 @@
-FROM maven:3.8.4-openjdk-17 as maven-builder
-COPY src /src
+FROM maven:3.8.4-openjdk-17-slim as maven-builder
+COPY ./ ./
 COPY pom.xml ./
 RUN mvn -f ./ clean package
 FROM openjdk:17-jdk
